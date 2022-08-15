@@ -1,3 +1,4 @@
+import { click } from '@testing-library/user-event/dist/click';
 import React from 'react';
 import ReactDom from 'react-dom';
 
@@ -34,14 +35,20 @@ function BookList() {
   );
 };
 
-const Book = (props) => {
-  const { img, title, author } = props;
-
+const Book = ({ img, title, author }) => {
+  const clickHandler = () => {
+    alert('hello world');
+  }
+  const complexExample = (author) => {
+    console.log(author);
+  }
   return (
     <article className='book'>
         <img src={img} alt='' />
-        <h1>{title}</h1>
+        <h1 onClick={() => console.log(title)}>{title}</h1>
         <h4>{author}</h4>
+        <button type='button' onClick={clickHandler}>Reference example</button>
+        <button type='button' onClick={() => complexExample(author)}>more complex example</button>
     </article>
   );
 };
